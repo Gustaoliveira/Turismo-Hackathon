@@ -1,3 +1,5 @@
+/* This is a CSS file */
+/* This is a CSS file */
 .imgresponsive{
   display: block;
   margin-left: auto;
@@ -8,13 +10,13 @@
 }
 body {
   font-family: Helvetica;
-  background-color:#1B3DA6;
+  background-color: #BF0000;
 }
 
 .mobile-container {
 
   background-color: white;
-  height: 3200px;
+  height: 3300px;
   color: black;
   border-radius: 10px;
 }
@@ -38,7 +40,7 @@ body {
 }
 
 .topnav a.icon {
-  background: #1B3DA6;
+  background: #BF0000;
   display: block;
   position: absolute;
   right: 0;
@@ -46,11 +48,11 @@ body {
 }
 
 .topnav a:hover {
-  background-color: #5990D9 ;
-  color: #1B3DA6;
+  background-color: rgb(245, 116, 116);
+  color: #BF0000;
 }
 
 .active {
-  background-color: #5990D9;
-  color: #1B3DA6;
+  background-color: #FF0000;
+  color: #BF0000;
 }
