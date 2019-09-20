@@ -1,85 +1,546 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="css/style4.css">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/style4.css">
+
+	<style>
+		*,
+		*:before,
+		*:after {
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		.menu {
+			background: #F2B90F;
+			border-radius: 50%;
+			width: 50px;
+			height: 50px;
+			bottom: 25px;
+      margin-left:-2px;
+      margin-top:5px;
+
+		}
+
+		.hamburguer {
+			position: relative;
+			display: block;
+			background: #000;
+			width: 30px;
+			height: 2px;
+			top: 25px;
+			left: 12px;
+			transition: .5s ease-in-out;
+		}
+
+		.hamburguer:before,
+		.hamburguer:after {
+			background: #000;
+			content: '';
+			display: block;
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			transition: .5s ease-in-out;
+		}
+
+		.hamburguer:before {
+			top: -10px;
+		}
+
+		.hamburguer:after {
+			bottom: -10px;
+		}
+
+		input {
+			display: none;
+		}
+
+		input:checked~label .hamburguer {
+			transform: rotate(45deg);
+		}
+
+		input:checked~label .hamburguer:before {
+			transform: rotate(90deg);
+			top: 0;
+		}
+
+		input:checked~label .hamburguer:after {
+			transform: rotate(90deg);
+			bottom: 0;
+		}
+
+		.menu {
+			cursor: pointer;
+			box-shadow: 0 0 0 0 #F2A30F, 0 0 0 0 #F2B90F;
+			transition: box-shadow 0.1s cubic-bezier(.19, 1, .22, 1);
+		}
+
+		.menu:hover {
+			box-shadow: 0 0 0 8px #F2A30F, 0 0 0 8px #F2B90F;
+		}
+
+		/* animação do menu*/
+
+		input:checked~label .menu {
+			box-shadow: 0 0 0 2vw #F2A30F, 0 0 0 27vh #F2B90F;
+		}
+
+		/* só aparecer o menu ao clicar*/
+
+		input:checked~ul {
+			opacity: 1;
+		}
+
+		/* animação e estilo do menu*/
+
+		ul {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			list-style: none;
+			font-size: 20px;
+			opacity: 0;
+			transition: .25s .1.1s cubic-bezier(0, 1.07, 0, 1.02);
+			z-index: 2;
+		}
+
+		a {
+			color: black;
+			display: block;
+			margin-bottom: 1em;
+			text-decoration: none;
+		}
+
+		#turismo {
+			position: absolute;
+			left: -390%;
+			margin-top: 170%;
+		}
+
+		#evento {
+			position: absolute;
+			left: -370%;
+			margin-top: 240%;
+		}
+
+		#esporte {
+			position: relative;
+			left: -320%;
+			margin-top: 325%;
+		}
+
+		.menun {
+			width: 100%;
+			float: right;
+			height: 50px;
+			z-index: 100;
+			position: relative;
+			left: 83%;
+			margin-top: -18%;
+		}
+
+		#noticias {
+			margin-top: -970%;
+		}
+	</style>
+
 
 </head>
+
 <body>
 
-<!-- Simulate a smartphone / tablet -->
+	<!-- Simulate a smartphone / tablet -->
 
-<div class="mobile-container">
+	<div class="mobile-container">
 
-<!-- Top Navigation Menu -->
-<div class="topnav">
-  <a href="index.html" class="active">Mongaguá</a>
-  <div id="myLinks">
-    <a href="eco.html">Turismo Ecologico</a>
-    <a href="eventos.html">Eventos e Trabalhos </a>
-    <a href="esportes.html">Esporte e Musica</a>
-  </div>
-  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-    <i class="fa fa-bars"></i>
-  </a>
-</div>
+		<!-- Top Navigation Menu -->
+		<div class="topnav">
+			<a href="index.html" scrypt="display:none" class="active">Mongaguá</a>
+		</div>
+		<!-- Hamburguer -->
+		<div class="menun">
+			<input id="menu-hamburguer" type="checkbox">
 
-<div style="padding-left:16px">
-  <h1> Esportes </h1>
-  <h4> Mongaguá é muito reconhecida na área dos esportes por suas diversas conquistas. </h4>
-  <h4> Liga Paulista de Handebol </h4>
-   <img src="imagem3/had.png" class="imgresponsive"alt="had">
-   <img src="imagem3/hand1.png" class="imgresponsive" alt="hand1">
-    <p>Neste domingo (18), as equipes de handebol entraram em quadra para disputar mais uma etapa da Liga Paulista de Handebol.
+			<label for="menu-hamburguer">
+        <div class="menu">
+            <span class="hamburguer"></span>
+        </div>
+    </label>
+			<ul>
+				<a href="eco.html" id="turismo">Turismo Ecológico</a>
+				<a href="eventos.html" id="evento">Eventos e Trabalhos</a>
+				<a href="esportes.html" id="esporte">Esportes</a>
+			</ul>
+		</div>
+	</div>
+
+<div id="noticias" style="padding-left:16px">>
+		<div class="clear">
+			<br>
+			<h1> Esportes </h1>
+		</div>
+		<div class="box left tres" id="caixa">
+			<h4>Mongaguá é muito reconhecida na área dos esportes por suas diversas conquistas.</h4>
+      <h4> Liga Paulista de Handebol </h4>
+			<div class="flip-container" id="flip-toggle">
+				<div class="flipper">
+					<div class="front" style="background: url(imagem3/hand1.png) 0 0 no-repeat; height:995vh;width:101%; margin-top:60px;" class="imgresponsive" alt="Monteiro">
+					</div>
+					<div class="back">
+						<div class="back-logo"></div>
+						<p>Neste domingo (18), as equipes de handebol entraram em quadra para disputar mais uma etapa da Liga Paulista de Handebol.
     O time masculino, categoria livre, disputou com a equipe de Caraguatatuba, em um jogo acirrado. Mongaguá sagrou-se campeã, com um placar de 29×20. Essa vitória classificou a equipe em 2º lugar no ranking da Liga.
     As meninas da categoria infantil também se destacaram. As mongaguaenses seguem invictas em toda competição. O time feminino entrou em quadra contra a equipe de São Caetano, em uma partida difícil, mas garantiu a vitória com um placar de 22×17.</p>
+					</div>
+				</div>
+			</div>
+			<br>
+			<br>
+		</div>
+		<!-- Nova Imagem -->
+	</div>
 
-  <h4>BASQUETE SEGUE FAZENDO BONITO NO “2º JOGOS INFANTIS DO ESTADO DE SÃO PAULO” </h4>
-  <img src="imagem3/basquete.png" class="imgresponsive" alt="basquete">
-   <p> No último sábado (17), os atletas da equipe de basquete mongaguaense, nas categorias feminino e masculino, garantiram suas respectivas vagas na Final Estadual do 2º Jogos Infantis do Estado de São Paulo. Ambas as partidas foram contra a equipe de Cubatão e foram marcadas pelo equilíbrio e tensão dos atletas, visto que, a conquista garante a Fase Regional da competição.</p>
-
-  <h4> Karatecas de Mongaguá disputam mundialito na Argentina </h4>
-  <img src="imagem3/karate.jpg" class="imgresponsive" alt="Karater">
-  <p> De 6 a 9 de setembro, cinco karatecas representarão Mongaguá no XIII Mundialito Shinshuka – Karate. A competição acontecerá na cidade  de Cordoba, na Argentina.
+  <div id="noticias" style="padding-left:16px">
+		<div class="clear">
+			<br>
+		</div>
+		<div class="box left tres" id="caixa">
+			<h4>BASQUETE SEGUE FAZENDO BONITO NO “2º JOGOS INFANTIS DO ESTADO DE SÃO PAULO” </h4>
+      <h4> Liga Paulista de Handebol </h4>
+			<div class="flip-container" id="flip-toggle">
+				<div class="flipper">
+					<div class="front" style="background: url(imagem3/basquete.png) 0 0 no-repeat;" class="imgresponsive" alt="basquete">
+					</div>
+					<div class="back">
+						<div class="back-logo"></div>
+						<p> No último sábado (17), os atletas da equipe de basquete mongaguaense, nas categorias feminino e masculino, garantiram suas respectivas vagas na Final Estadual do 2º Jogos Infantis do Estado de São Paulo. Ambas as partidas foram contra a equipe de Cubatão e foram marcadas pelo equilíbrio e tensão dos atletas, visto que, a conquista garante a Fase Regional da competição.</p>
+					</div>
+				</div>
+			</div>
+			<br>
+			<br>
+		</div>
+		<!-- Nova Imagem -->
+	</div>
+  <div id="noticias" style="padding-left:16px">
+		<div class="clear">
+			<br>
+		</div>
+		<div class="box left tres" id="caixa">
+		<h4> Karatecas de Mongaguá disputam mundialito na Argentina </h4>
+			<div class="flip-container" id="flip-toggle">
+				<div class="flipper">
+					<div class="front" style="background: url(imagem3/karate.jpg) 0 0 no-repeat;" class="imgresponsive" alt="karater">
+					</div>
+					<div class="back">
+						<div class="back-logo"></div>
+						<p> De 6 a 9 de setembro, cinco karatecas representarão Mongaguá no XIII Mundialito Shinshuka – Karate. A competição acontecerá na cidade  de Cordoba, na Argentina.
    Antonio Marcos das Neves, Marcus Vinicius de Oliveira Campos, Gabrielle Yasmyn Santos, Mauricio Silva dos Santos e Aurélio Martins dos Reis disputarão com atletas de diversos países e prometem muito esforço para trazerem mais títulos para a cidade.</p>
-
-  <h1>Música</h1>
+					</div>
+				</div>
+			</div>
+			<br>
+			<br>
+		</div>
+		<!-- Nova Imagem -->
+	</div>
+  <div id="noticias" style="padding-left:16px">
+		<div class="clear">
+			<br>
+		</div>
+		<div class="box left tres" id="caixa">
+		<h1>Música</h1>
   <h4>Projeto Guri</h4>
-  <img src="imagem3/guri.jpg" class="imgresponsive" alt="guri">
-  <p>Crianças e jovens de 8 a 17 anos que desejam ingressar no mundo da música têm a oportunidade de participar dos cursos de iniciação realizados pelo Projeto Guri. As aulas são gratuitas e acontecem no Centro Cultural Antonio Pires de Abreu. As modalidades disponíveis são: Violino, Viola, Violoncelo, Contrabaixo, percussão, Cavaco e Canto Coral.
+			<div class="flip-container" id="flip-toggle">
+				<div class="flipper">
+					<div class="front" style="background: url(imagem3/guri.jpg) 0 0 no-repeat;height:280px;width:103%;position:absolute;" class="imgresponsive" alt="guri">
+					</div>
+					<div class="back">
+						<div class="back-logo"></div>
+						<p>Crianças e jovens de 8 a 17 anos que desejam ingressar no mundo da música têm a oportunidade de participar dos cursos de iniciação realizados pelo Projeto Guri. As aulas são gratuitas e acontecem no Centro Cultural Antonio Pires de Abreu. As modalidades disponíveis são: Violino, Viola, Violoncelo, Contrabaixo, percussão, Cavaco e Canto Coral.
   PROJETO- Iniciativa do Governo do Estado e desenvolvido em parceria com a Prefeitura. O Guri é considerado o maior programa sociocultural brasileiro e funciona como base da formação musical para milhares de crianças e jovens, tendo na música seu instrumento de transformação e,nos Guris, sua obra-prima. </p>
-
-  <h4> Oficina Raul Cortez </h4>
-  <img src="imagem3/raul.jpg" class="imgresponsive" alt="raul">
-  <p> No Raul Cortez tem aulas de violão, teclado, cavaco, canto coral, teoria musical, desenho, teatro, pintura em vidro, jazz, dança de rua e do ventre continuam e terão mais vagas. E somam-se a elas com a promessa de grande procura por vagas: fotografia, dança de salão, pintura em tela, pole dance, cinema, técnica vocal, arte circense, prática e performance para bandas e grupos vocais.</p>
-
+					</div>
+				</div>
+			</div>
+			<br>
+			<br>
+		</div>
+		<!-- Nova Imagem -->
+	</div>
+<div id="noticias" style="padding-left:16px">
+		<div class="clear">
+			<br>
+		</div>
+		<div class="box left tres" id="caixa">
+  <h4>Oficina Raul Cortez</h4>
+			<div class="flip-container" id="flip-toggle">
+				<div class="flipper">
+					<div class="front" style="background: url(imagem3/raul.jpg) 0 0 no-repeat;height:280px;position:absolute;" class="imgresponsive" alt="guri">
+					</div>
+					<div class="back">
+						<div class="back-logo"></div>
+						<p> No Raul Cortez tem aulas de violão, teclado, cavaco, canto coral, teoria musical, desenho, teatro, pintura em vidro, jazz, dança de rua e do ventre continuam e terão mais vagas. E somam-se a elas com a promessa de grande procura por vagas: fotografia, dança de salão, pintura em tela, pole dance, cinema, técnica vocal, arte circense, prática e performance para bandas e grupos vocais.</p>
+					</div>
+				</div>
+			</div>
+			<br>
+			<br>
+		</div>
+		<!-- Nova Imagem -->
+	</div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
 <!-- End smartphone / tablet look -->
 </div>
+<style rel="stylesheet">
+		body {
 
-<script>
-function myFunction() {
-  var x = document.getElementById("myLinks");
-  if (x.style.display === "block") {
-    x.style.display = "none";
-  } else {
-    x.style.display = "block";
-  }
-}
-</script>
+			font: 100% /1.4 Arial, sans-serif;
+		}
+
+		.box {
+			width: 20.5em;
+		}
+
+		*,
+		*:before,
+		*:after {
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			box-sizing: border-box;
+		}
+
+		.cf:before,
+		.cf:after {
+			content: " ";
+			display: table;
+		}
+
+		.cf:after {
+			clear: both;
+		}
+
+		.cf {
+			*zoom: 1;
+		}
+
+		.left {
+			float: left;
+		}
+
+		.right {
+			float: right;
+		}
+
+		.clear {
+			clear: both;
+		}
+
+		.center {
+			text-align: center;
+		}
+
+		/* simple */
+
+		.flip-container {
+			-webkit-perspective: 1000;
+			-moz-perspective: 1000;
+			-ms-perspective: 1000;
+			perspective: 1000;
+
+			-ms-transform: perspective(1000px);
+			-moz-transform: perspective(1000px);
+			-moz-transform-style: preserve-3d;
+			-ms-transform-style: preserve-3d;
+
+			border: solid #333;
+		}
+
+		.flip-container:hover .back,
+		.flip-container.hover .back {
+			-webkit-transform: rotateY(0deg);
+			-moz-transform: rotateY(0deg);
+			-o-transform: rotateY(0deg);
+			-ms-transform: rotateY(0deg);
+			transform: rotateY(0deg);
+		}
+
+		.flip-container:hover .front,
+		.flip-container.hover .front {
+			-webkit-transform: rotateY(180deg);
+			-moz-transform: rotateY(180deg);
+			-o-transform: rotateY(180deg);
+			transform: rotateY(180deg);
+		}
+
+
+
+		.flip-container,
+		.front,
+		.back {
+			width: 280px;
+			height: 280px;
+			margin: 5%;
+			border-radius: 5px;
+		}
+
+		.flipper {
+			-webkit-transition: 0.6s;
+			-webkit-transform-style: preserve-3d;
+			-ms-transition: 0.6s;
+
+			-moz-transition: 0.6s;
+			-moz-transform: perspective(1000px);
+			-moz-transform-style: preserve-3d;
+			-ms-transform-style: preserve-3d;
+
+			transition: 0.6s;
+			transform-style: preserve-3d;
+
+			position: relative;
+			right: 6%;
+			margin-top: -6%;
+		}
+
+		.front,
+		.back {
+			-webkit-backface-visibility: hidden;
+			-moz-backface-visibility: hidden;
+			-ms-backface-visibility: hidden;
+			backface-visibility: hidden;
+
+			-webkit-transition: 0.6s;
+			-webkit-transform-style: preserve-3d;
+
+			-moz-transition: 0.6s;
+			-moz-transform-style: preserve-3d;
+
+			-o-transition: 0.6s;
+			-o-transform-style: preserve-3d;
+
+			-ms-transition: 0.6s;
+			-ms-transform-style: preserve-3d;
+
+			transition: 0.6s;
+			transform-style: preserve-3d;
+
+			position: absolute;
+			top: 0;
+			left: 0;
+
+		}
+
+		.front {
+			-webkit-transform: rotateY(0deg);
+			-ms-transform: rotateY(0deg);
+			background: lightgreen;
+			z-index: 2;
+			background: background: url(imagem/monteiro2.jpg) 0 0 no-repeat;
+			height: 280px;
+
+
+		}
+
+		.back {
+			background: lightblue;
+			-webkit-transform: rotateY(-180deg);
+			-moz-transform: rotateY(-180deg);
+			-o-transform: rotateY(-180deg);
+			-ms-transform: rotateY(-180deg);
+			transform: rotateY(-180deg);
+
+		}
+
+		.back {
+			background: #eee;
+		}
+
+		.back-logo {
+			position: absolute;
+			top: 1px;
+			left: -1px;
+			width: 280px;
+			height: 278px;
+			margin-top: center;
+			background-color: #5990D9;
+			background-size: cover;
+
+		}
+
+		.back-title {
+			font-weight: bold;
+			color: #00304a;
+			position: absolute;
+			top: 292px;
+			left: 0;
+			right: 0;
+			text-align: center;
+			text-shadow: 0.1em 0.1em 0.05em #acd7e5;
+			font-family: Courier;
+			font-size: 22px;
+
+		}
+
+		.back p {
+			position: absolute;
+			bottom: 40px;
+			top: 0.1px;
+			left: 0;
+			right: 0;
+			text-align: center;
+			padding: 0 20px;
+			font-size: 14px;
+
+		}
+
+		/* vertical */
+
+		.vertical.flip-container {
+			position: relative;
+
+		}
+
+		.vertical .back {
+			-webkit-transform: rotateX(180deg);
+			-moz-transform: rotateX(180deg);
+			-ms-transform: rotateX(180deg);
+			transform: rotateX(180deg);
+
+		}
+
+		.vertical.flip-container .flipper {
+			-webkit-transform-origin: 100% 213.5px;
+			-moz-transform-origin: 100% 213.5px;
+			-ms-transform-origin: 100% 213.5px;
+			transform-origin: 100% 213.5px;
+
+		}
+
+
+		.vertical.flip-container:hover .back,
+		.vertical.flip-container.hover .back {
+			-webkit-transform: rotateX(0deg);
+			-moz-transform: rotateX(0deg);
+			-o-transform: rotateX(0deg);
+			-ms-transform: rotateX(0deg);
+			transform: rotateX(0deg);
+
+		}
+
+		.vertical.flip-container:hover .front,
+		.vertical.flip-container.hover .front {
+			-webkit-transform: rotateX(180deg);
+			-moz-transform: rotateX(180deg);
+			-o-transform: rotateX(180deg);
+			transform: rotateX(180deg);
+		}
+
+		/*Fim Stile carta*/
+	</style>
 
 </body>
 </html>
