@@ -1,151 +1,339 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="css/style2.css">
-<script src="components/jquery-3.4.1.min.js"> </script>
-<script  src="components/acao.js"> </script>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/style2.css">
+	<script src="components/jquery-3.4.1.min.js">
+
+	</script>
+	<script src="components/acao.js">
+
+	</script>
 
 
 </head>
+<style>
+	*,
+	*:before,
+	*:after {
+		padding: 0;
+		box-sizing: border-box;
+	}
+
+	.menu {
+		background: #82D98F;
+		border-radius: 50%;
+		width: 50px;
+		height: 50px;
+		bottom: 25px;
+		margin-left: -2px;
+		margin-top: 5px;
+
+	}
+
+	.hamburguer {
+		position: relative;
+		display: block;
+		background: #000;
+		width: 30px;
+		height: 2px;
+		top: 25px;
+		left: 12px;
+		transition: .5s ease-in-out;
+	}
+
+	.hamburguer:before,
+	.hamburguer:after {
+		background: #000;
+		content: '';
+		display: block;
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		transition: .5s ease-in-out;
+	}
+
+	.hamburguer:before {
+		top: -10px;
+	}
+
+	.hamburguer:after {
+		bottom: -10px;
+	}
+
+	input {
+		display: none;
+	}
+
+	input:checked~label .hamburguer {
+		transform: rotate(45deg);
+	}
+
+	input:checked~label .hamburguer:before {
+		transform: rotate(90deg);
+		top: 0;
+	}
+
+	input:checked~label .hamburguer:after {
+		transform: rotate(90deg);
+		bottom: 0;
+	}
+
+	.menu {
+		cursor: pointer;
+		box-shadow: 0 0 0 0 #14A653, 0 0 0 0 #82D98F;
+		transition: box-shadow 0.1s cubic-bezier(.19, 1, .22, 1);
+	}
+
+	.menu:hover {
+		box-shadow: 0 0 0 8px #14A653, 0 0 0 8px #82D98F;
+	}
+
+	/* animação do menu*/
+
+	input:checked~label .menu {
+		box-shadow: 0 0 0 2vw #14A653, 0 0 0 27vh #82D98F;
+	}
+
+	/* só aparecer o menu ao clicar*/
+
+	input:checked~ul {
+		opacity: 1;
+	}
+
+	/* animação e estilo do menu*/
+
+	ul {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		list-style: none;
+		font-size: 20px;
+		opacity: 0;
+		transition: .25s .1.1s cubic-bezier(0, 1.07, 0, 1.02);
+		z-index: 2;
+	}
+
+	a {
+		color: black;
+		display: block;
+		margin-bottom: 1em;
+		text-decoration: none;
+	}
+
+	#turismo {
+		position: absolute;
+		left: -390%;
+		margin-top: 170%;
+	}
+
+	#evento {
+		position: absolute;
+		left: -370%;
+		margin-top: 240%;
+	}
+
+	#esporte {
+		position: relative;
+		left: -320%;
+		margin-top: 325%;
+	}
+
+	.menun {
+		width: 100%;
+		float: right;
+		height: 50px;
+		z-index: 100;
+		position: relative;
+		left: 83%;
+		margin-top: -18%;
+	}
+
+	#noticias {
+		margin-top: -3900px;
+	}
+</style>
+
+
+</head>
+
 <body>
 
-<!-- Simulate a smartphone / tablet -->
+	<!-- Simulate a smartphone / tablet -->
 
-<div class="mobile-container">
+	<div class="mobile-container">
 
-<!-- Top Navigation Menu -->
-<div class="topnav">
-  <a href="index.html" class="active">Mongaguá</a>
-  <div id="myLinks">
-    <a href="eco.html">Turismo Ecológico</a>
-    <a href="eventos.html">Eventos e Trabalhos: </a>
-    <a href="esportes.html">Esporte e Musica:</a>
-  </div>
-  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-    <i class="fa fa-bars"></i>
-  </a>
-</div>
+		<!-- Top Navigation Menu -->
+		<div class="topnav">
+			<a href="index.html" scrypt="display:none" class="active">Mongaguá</a>
+		</div>
+		<!-- Hamburguer -->
+		<div class="menun">
+			<input id="menu-hamburguer" type="checkbox">
 
-<div class="turismoEco" style="padding-left:16px">
-
-  <h1> Turismo Ecológico </h1>
-
-  <h2>Selecione uma opção </h2>
-  <button class="Ensolarado">Ensolarado</button>
-  <button class="Nublado">Nublado</button>
-  <button class="Chuvoso">Chuvoso</button>
-
-  
-<!-- ***********************************************************-->
- <div class="boxo">
-  <div class="climaEnsolarado">
-  <h4> Poço das Antas </h4>
-  <img src="imagem2/poco.jpg" class="imgresponsive2" alt="Esportes" id="poco">
-  <p>É uma das principais atrações de Mongaguá, um dos pontos turísticos mais visitados, sendo um local muito procurado pelos turistas e moradores. Constitui-se de uma queda-d’água que forma uma cachoeira, terminando com uma piscina de água natural, boa infra-estrutura, com banheiro, pontes com corrimão, lanchonetes, guarita e um amplo estacionamento. Excelente lugar para banho e piquenique e para quem pretende se aventurar pelas trilhas morro acima, que levam até ás cachoeiras.</p>
-
-  <h4> Parque Turístico Ecológico "A Tribuna" </h4>
-  <img src="imagem2/parque.jpg" class="imgresponsive" alt="Monteiro" id="parque">
-  <p>Criado em 1996, o Parque Turístico Ecológico “A Tribuna” de Mongaguá é uma área destinada à visitação pública. O visitante passeia pelos seus 15 mil m2, observando e aprendendo em cada recinto com diferentes animais. Atualmente, o Parque possui recinto para Jabutis, um Serpentário com cobras peçonhentas e não peçonhentas, um Viveiro interativo de Aves, recinto de Quati, Jacaré, Tucanos, Gavião, além de 15 aquários tropicais e marinhos com peixes de diversas partes do globo. </p>
-
-  <h4> Plataforma de Pesca Amadora </h4>
-  <img src="imagem2/plataforma.jpg" class="imgresponsive" alt="Monteiro Lobato" id="plataforma">
-  <p>Visitada por inúmeros turistas e munícipes, o local é um dos cenários mais bonitos e encantadores do Brasil. Instalada na cidade em 1977, é a maior plataforma pesqueira em estrutura de concreto armado avançando 400 metros mar adentro formando um “T” e se lançando 86m para cada um dos lados. Na entrada há sanitários, local apropriado para lavagem dos pescados e apetrechos de pescas </p>
-
-  <h4> Belvedere </h4>
-  <img src="imagem2/belvedere.jpg" class="imgresponsive" alt="Belvedere" id="belvedere">
-  <p> O mirante do Belvedere, localizado no Morro do Jardim Aguapeú, é um ótimo lugar para ver toda a cidade. Fica junto as antenas de transmissão..</p>
-
-  <h4> Praias Agenor de Campos </h4>
-  <img src="imagem2/agenor.jpg" class="imgresponsive2" alt="Praias Agenor" id="agenor">
-  <p> Praia mais movimentada da cidade, localizada no Complexo Plataforma, situa-se próximo da Plataforma Marítima de Pesca Amadora e do Parque Ecológico Turístico “A Tribuna”.</p>
-
-  <h4> Complexo Zona Rural </h4>
-  <img src="imagem2/rural.jpg" class="imgresponsive" alt="Rural" id="rural">
-  <p>Na zona rural da cidade pode-se desfrutar de diversas atrações, como passar o dia todo pescando, curtindo as piscinas de águas naturais ou simplesmente descansando a sombra de uma árvore. Conhecer um pouco sobre a fauna e flora da região e entrar nas águas dos rios e corredeiras que enfeitam a cidade de Mongaguá. </p>
-
-  <h4> Morro da Padroeira </h4>
-  <img src="imagem2/santa.jpg" class="imgresponsive2" alt="Raul Cortez" id="santa">
-  <p>Com mais de 15 metros de altura e cerca de 2,5 toneladas, instalada numa linda trilha urbana feita em uma passarela de madeira com 150 metros de extensão. São 139 degraus em meio a mata nativa. Pode-se avistar pássaros silvestres e no deck com 30 metros acima do chão, ter uma visão privilegiada e deslumbrante da região. </p>
-
-  <h4> Praia do Centro </h4>
-  <img src="imagem2/centro.jpg" class="imgresponsive2" alt="Raul Cortez" id="centro">
-  <p>Uma das principais praias da cidade, sendo uma das mais movimentadas, situa-se próximo ao centro comercial, Prefeitura Municipal de Mongaguá e Praça de Eventos Dudu Samba </p>
-
-  <h4> Praça de Eventos Dudu Samba </h4>
-  <img src="imagem2/Dudu.jpeg" class="imgresponsive2" alt="Raul Cortez" id="dudu">
-  <p>Situada em frente a praia central, construída sobre a areia da praia, é o local onde se realizam todos os eventos de grande porte da cidade. A típica festa junina que acontece entre os meses de junho e julho, “Festão na Praia”, que atrai muitos turistas e moradores. Conhecida também como “Sambódromo“ por acolher os desfiles de carnaval das escolas de samba e blocos carnavalescos. A avenida recebe também os desfiles cívicos e paradas militares da Semana da Pátria e do dia sete de dezembro (aniversário da cidade). </p>
-
-  </div>
-<!-- *******************************************************-->
-  <div class="climaChuvoso"> 
-   <h4> Raul Cortez </h4>
-  <img src="imagem2/raul.jpg" class="imgresponsive2" alt="Raul Cortez" id="raul" >
-  <p>Inaugurado em dezembro de 1996, Centro da vida cultural da cidade, seu nome em homenagem ao ator Raul Cortez ainda em vida. Oferece cursos gratuitos de musica, pintura, teclado, violão, violino, hip hop, ballet, Jazz, dança de rua, dança do ventre, teatro, dança de salão e coral, tudo para a população de Mongaguá, além de abrigar o Teatro Municipal Ronaldo Ciambroni, com capacidade para 320 espectadores. Com peças o ano todo. </p>
-
- <h4> Igreja Matriz Nossa Senhora da Conceição Aparecida </h4>
-  <img src="imagem2/igreja.jpg" class="imgresponsive2" alt="Raul Cortez" id="igreja">
-  <p> Construída em 1949, em estilo colonial, a igreja possui a imagem de Nossa Senhora da Conceição Aparecida trazida da cidade de Aparecida do Norte, e imagens como a de São José, Santa Rita de Cássia, São Judas Tadeu e Santa Luzia, além disso, destacam-se no templo os vitrais coloridos que representam cenas bíblicas como a “anunciação”, “nascimento de Jesus”, ”cristo redentor”, “Jesus rezando no horto das oliveiras” e a réplica da conhecida obra “Pietá” com Jesus no colo de sua mãe.</p>
-
-  <h4> Feira Artesanato do Centro </h4>
-  <img src="imagem2/feira2.jpg" class="imgresponsive2" alt="Raul Cortez" id="feira2">
-  <p>Um sofisticado complexo de 98 quiosques com arquitetura própria de madeira maciça e tijolos aparentes. Ótimo local para compras de artesanatos locais. </p>
- 
-  <h4> Feira de Artes Plataforma </h4>
-  <img src="imagem2/feira1.jpg" class="imgresponsive2" alt="Raul Cortez" id="feira1">
-  <p>Com infraestrutura de madeira maciça e tijolos de barro, está localizada no Complexo Plataforma, conta com artesãos locais e é um ótimo lugar para compras. </p>
-  </div>
-
-  
-<!-- **********************************************************-->
- <div class="climaNublado">
-
-   <h4> Feira de Artes Plataforma </h4>
-  <img src="imagem2/feira1.jpg" class="imgresponsive2" alt="Raul Cortez" id="feira1">
-  <p>Com infraestrutura de madeira maciça e tijolos de barro, está localizada no Complexo Plataforma, conta com artesãos locais e é um ótimo lugar para compras. </p>
-
-  <h4> Feira Artesanato do Centro </h4>
-  <img src="imagem2/feira2.jpg" class="imgresponsive2" alt="Raul Cortez" id="feira2">
-  <p>Um sofisticado complexo de 98 quiosques com arquitetura própria de madeira maciça e tijolos aparentes. Ótimo local para compras de artesanatos locais. </p>
-  
-  <h4> Praça de Eventos Dudu Samba </h4>
-  <img src="imagem2/Dudu.jpeg" class="imgresponsive2" alt="Raul Cortez" id="dudu">
-  <p>Situada em frente a praia central, construída sobre a areia da praia, é o local onde se realizam todos os eventos de grande porte da cidade. A típica festa junina que acontece entre os meses de junho e julho, “Festão na Praia”, que atrai muitos turistas e moradores. Conhecida também como “Sambódromo“ por acolher os desfiles de carnaval das escolas de samba e blocos carnavalescos. A avenida recebe também os desfiles cívicos e paradas militares da Semana da Pátria e do dia sete de dezembro (aniversário da cidade). </p>
-
-<h4> Morro da Padroeira </h4>
-  <img src="imagem2/santa.jpg" class="imgresponsive2" alt="Raul Cortez" id="santa">
-  <p>Com mais de 15 metros de altura e cerca de 2,5 toneladas, instalada numa linda trilha urbana feita em uma passarela de madeira com 150 metros de extensão. São 139 degraus em meio a mata nativa. Pode-se avistar pássaros silvestres e no deck com 30 metros acima do chão, ter uma visão privilegiada e deslumbrante da região. </p>
-
-  <h4> Belvedere </h4>
-  <img src="imagem2/belvedere.jpg" class="imgresponsive" alt="Belvedere" id="belvedere">
-  <p> O mirante do Belvedere, localizado no Morro do Jardim Aguapeú, é um ótimo lugar para ver toda a cidade. Fica junto as antenas de transmissão..</p>
-
- </div>
- </div>
- </div>
+			<label for="menu-hamburguer">
+        <div class="menu">
+            <span class="hamburguer"></span>
+        </div>
+    </label>
+			<ul>
+				<a href="eco.html" id="turismo">Turismo Ecológico</a>
+				<a href="eventos.html" id="evento">Eventos e Trabalhos</a>
+				<a href="esportes.html" id="esporte">Esportes</a>
+			</ul>
+		</div>
+	</div>
 
 
+	<div id="noticias" class="turismoEco" style="padding-left:16px">
+
+
+		<h1> Turismo Ecológico </h1>
+
+		<h2>Selecione uma opção </h2>
+		<button class="Ensolarado">Ensolarado</button>
+		<button class="Nublado">Nublado</button>
+		<button class="Chuvoso">Chuvoso</button>
+
+
+		<!-- ***********************************************************-->
+		<div class="boxo">
+			<div class="climaEnsolarado">
+				<h4> Poço das Antas </h4>
+				<img src="imagem2/poco.jpg" class="imgresponsive2" alt="Esportes" id="poco">
+				<p>É uma das principais atrações de Mongaguá, um dos pontos turísticos mais visitados, sendo um local muito procurado pelos
+					turistas e moradores. Constitui-se de uma queda-d’água que forma uma cachoeira, terminando com uma piscina de água natural,
+					boa infra-estrutura, com banheiro, pontes com corrimão, lanchonetes, guarita e um amplo estacionamento. Excelente lugar
+					para banho e piquenique e para quem pretende se aventurar pelas trilhas morro acima, que levam até ás cachoeiras.</p>
+
+				<h4> Parque Turístico Ecológico "A Tribuna" </h4>
+				<img src="imagem2/parque.jpg" class="imgresponsive" alt="Monteiro" id="parque">
+				<p>Criado em 1996, o Parque Turístico Ecológico “A Tribuna” de Mongaguá é uma área destinada à visitação pública. O visitante
+					passeia pelos seus 15 mil m2, observando e aprendendo em cada recinto com diferentes animais. Atualmente, o Parque possui
+					recinto para Jabutis, um Serpentário com cobras peçonhentas e não peçonhentas, um Viveiro interativo de Aves, recinto
+					de Quati, Jacaré, Tucanos, Gavião, além de 15 aquários tropicais e marinhos com peixes de diversas partes do globo.
+					</p>
+
+				<h4> Plataforma de Pesca Amadora </h4>
+				<img src="imagem2/plataforma.jpg" class="imgresponsive" alt="Monteiro Lobato" id="plataforma">
+				<p>Visitada por inúmeros turistas e munícipes, o local é um dos cenários mais bonitos e encantadores do Brasil. Instalada
+					na cidade em 1977, é a maior plataforma pesqueira em estrutura de concreto armado avançando 400 metros mar adentro formando
+					um “T” e se lançando 86m para cada um dos lados. Na entrada há sanitários, local apropriado para lavagem dos pescados
+					e apetrechos de pescas </p>
+
+				<h4> Belvedere </h4>
+				<img src="imagem2/belvedere.jpg" class="imgresponsive" alt="Belvedere" id="belvedere">
+				<p> O mirante do Belvedere, localizado no Morro do Jardim Aguapeú, é um ótimo lugar para ver toda a cidade. Fica junto as
+					antenas de transmissão..</p>
+
+				<h4> Praias Agenor de Campos </h4>
+				<img src="imagem2/agenor.jpg" class="imgresponsive2" alt="Praias Agenor" id="agenor">
+				<p> Praia mais movimentada da cidade, localizada no Complexo Plataforma, situa-se próximo da Plataforma Marítima de Pesca
+					Amadora e do Parque Ecológico Turístico “A Tribuna”.</p>
+
+				<h4> Complexo Zona Rural </h4>
+				<img src="imagem2/rural.jpg" class="imgresponsive" alt="Rural" id="rural">
+				<p>Na zona rural da cidade pode-se desfrutar de diversas atrações, como passar o dia todo pescando, curtindo as piscinas
+					de águas naturais ou simplesmente descansando a sombra de uma árvore. Conhecer um pouco sobre a fauna e flora da região
+					e entrar nas águas dos rios e corredeiras que enfeitam a cidade de Mongaguá. </p>
+
+				<h4> Morro da Padroeira </h4>
+				<img src="imagem2/santa.jpg" class="imgresponsive2" alt="Raul Cortez" id="santa">
+				<p>Com mais de 15 metros de altura e cerca de 2,5 toneladas, instalada numa linda trilha urbana feita em uma passarela de
+					madeira com 150 metros de extensão. São 139 degraus em meio a mata nativa. Pode-se avistar pássaros silvestres e no
+					deck com 30 metros acima do chão, ter uma visão privilegiada e deslumbrante da região. </p>
+
+				<h4> Praia do Centro </h4>
+				<img src="imagem2/centro.jpg" class="imgresponsive2" alt="Raul Cortez" id="centro">
+				<p>Uma das principais praias da cidade, sendo uma das mais movimentadas, situa-se próximo ao centro comercial, Prefeitura
+					Municipal de Mongaguá e Praça de Eventos Dudu Samba </p>
+
+				<h4> Praça de Eventos Dudu Samba </h4>
+				<img src="imagem2/Dudu.jpeg" class="imgresponsive2" alt="Raul Cortez" id="dudu">
+				<p>Situada em frente a praia central, construída sobre a areia da praia, é o local onde se realizam todos os eventos de
+					grande porte da cidade. A típica festa junina que acontece entre os meses de junho e julho, “Festão na Praia”, que atrai
+					muitos turistas e moradores. Conhecida também como “Sambódromo“ por acolher os desfiles de carnaval das escolas de samba
+					e blocos carnavalescos. A avenida recebe também os desfiles cívicos e paradas militares da Semana da Pátria e do dia
+					sete de dezembro (aniversário da cidade). </p>
+
+			</div>
+			<!-- *******************************************************-->
+			<div class="climaChuvoso">
+				<h4> Raul Cortez </h4>
+				<img src="imagem2/raul.jpg" class="imgresponsive2" alt="Raul Cortez" id="raul">
+				<p>Inaugurado em dezembro de 1996, Centro da vida cultural da cidade, seu nome em homenagem ao ator Raul Cortez ainda em
+					vida. Oferece cursos gratuitos de musica, pintura, teclado, violão, violino, hip hop, ballet, Jazz, dança de rua, dança
+					do ventre, teatro, dança de salão e coral, tudo para a população de Mongaguá, além de abrigar o Teatro Municipal Ronaldo
+					Ciambroni, com capacidade para 320 espectadores. Com peças o ano todo. </p>
+
+				<h4> Igreja Matriz Nossa Senhora da Conceição Aparecida </h4>
+				<img src="imagem2/igreja.jpg" class="imgresponsive2" alt="Raul Cortez" id="igreja">
+				<p> Construída em 1949, em estilo colonial, a igreja possui a imagem de Nossa Senhora da Conceição Aparecida trazida da cidade
+					de Aparecida do Norte, e imagens como a de São José, Santa Rita de Cássia, São Judas Tadeu e Santa Luzia, além disso,
+					destacam-se no templo os vitrais coloridos que representam cenas bíblicas como a “anunciação”, “nascimento de Jesus”,
+					”cristo redentor”, “Jesus rezando no horto das oliveiras” e a réplica da conhecida obra “Pietá” com Jesus no colo de
+					sua mãe.</p>
+
+				<h4> Feira Artesanato do Centro </h4>
+				<img src="imagem2/feira2.jpg" class="imgresponsive2" alt="Raul Cortez" id="feira2">
+				<p>Um sofisticado complexo de 98 quiosques com arquitetura própria de madeira maciça e tijolos aparentes. Ótimo local para
+					compras de artesanatos locais. </p>
+
+				<h4> Feira de Artes Plataforma </h4>
+				<img src="imagem2/feira1.jpg" class="imgresponsive2" alt="Raul Cortez" id="feira1">
+				<p>Com infraestrutura de madeira maciça e tijolos de barro, está localizada no Complexo Plataforma, conta com artesãos locais
+					e é um ótimo lugar para compras. </p>
+			</div>
+
+
+			<!-- **********************************************************-->
+			<div class="climaNublado">
+
+				<h4> Feira de Artes Plataforma </h4>
+				<img src="imagem2/feira1.jpg" class="imgresponsive2" alt="Raul Cortez" id="feira1">
+				<p>Com infraestrutura de madeira maciça e tijolos de barro, está localizada no Complexo Plataforma, conta com artesãos locais
+					e é um ótimo lugar para compras. </p>
+
+				<h4> Feira Artesanato do Centro </h4>
+				<img src="imagem2/feira2.jpg" class="imgresponsive2" alt="Raul Cortez" id="feira2">
+				<p>Um sofisticado complexo de 98 quiosques com arquitetura própria de madeira maciça e tijolos aparentes. Ótimo local para
+					compras de artesanatos locais. </p>
+
+				<h4> Praça de Eventos Dudu Samba </h4>
+				<img src="imagem2/Dudu.jpeg" class="imgresponsive2" alt="Raul Cortez" id="dudu">
+				<p>Situada em frente a praia central, construída sobre a areia da praia, é o local onde se realizam todos os eventos de
+					grande porte da cidade. A típica festa junina que acontece entre os meses de junho e julho, “Festão na Praia”, que atrai
+					muitos turistas e moradores. Conhecida também como “Sambódromo“ por acolher os desfiles de carnaval das escolas de samba
+					e blocos carnavalescos. A avenida recebe também os desfiles cívicos e paradas militares da Semana da Pátria e do dia
+					sete de dezembro (aniversário da cidade). </p>
+
+				<h4> Morro da Padroeira </h4>
+				<img src="imagem2/santa.jpg" class="imgresponsive2" alt="Raul Cortez" id="santa">
+				<p>Com mais de 15 metros de altura e cerca de 2,5 toneladas, instalada numa linda trilha urbana feita em uma passarela de
+					madeira com 150 metros de extensão. São 139 degraus em meio a mata nativa. Pode-se avistar pássaros silvestres e no
+					deck com 30 metros acima do chão, ter uma visão privilegiada e deslumbrante da região. </p>
+
+				<h4> Belvedere </h4>
+				<img src="imagem2/belvedere.jpg" class="imgresponsive" alt="Belvedere" id="belvedere">
+				<p> O mirante do Belvedere, localizado no Morro do Jardim Aguapeú, é um ótimo lugar para ver toda a cidade. Fica junto as
+					antenas de transmissão..</p>
+
+			</div>
+		</div>
+	</div>
 
 
 
-<!-- End smartphone / tablet look -->
-</div>
-
-<script>
-function myFunction() {
-  var x = document.getElementById("myLinks");
-  if (x.style.display === "block") {
-    x.style.display = "none";
-  } else {
-    x.style.display = "block";
-  }
-}
 
 
+	<!-- End smartphone / tablet look -->
+	</div>
 
-</script>
 
 </body>
+
 </html>
